@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lite-esign"
+version = "0.1.0"
+description = "Simple electronic acceptance for Python apps: typed name + I agree + optional drawn signature, SHA-256 fingerprint, signature certificate PDF, signed PDF copies, private signing links."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Hexaspace" }]
+keywords = ["esign", "e-signature", "signature", "pdf", "certificate", "approval", "contract"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Intended Audience :: Developers",
+  "Topic :: Office/Business :: Financial :: Accounting",
+  "Operating System :: OS Independent",
+]
+dependencies = ["reportlab>=4", "pypdf>=4"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lite_esign"]
