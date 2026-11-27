@@ -214,7 +214,8 @@ def stamp_pdf(original: bytes, cert: bytes, note: str) -> bytes:
     from reportlab.pdfgen import canvas
     from reportlab.lib.colors import HexColor
     src, cert_r, out = PdfReader(io.BytesIO(original), strict=False), PdfReader(io.BytesIO(cert)), PdfWriter()
-    for page in src.pages:
+    for src_page in src.pages:
+        page = out.add_page(src_page)          # attach to the writer first (required by pypdf 7+)
         w, h = float(page.mediabox.width), float(page.mediabox.height)
         buf = io.BytesIO()
         c = canvas.Canvas(buf, pagesize=(w, h))
@@ -223,7 +224,6 @@ def stamp_pdf(original: bytes, cert: bytes, note: str) -> bytes:
         c.drawString(18, 9, note)
         c.save()
         page.merge_page(PdfReader(io.BytesIO(buf.getvalue())).pages[0])
-        out.add_page(page)
     for page in cert_r.pages:
         out.add_page(page)
     b = io.BytesIO()

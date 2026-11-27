@@ -17,7 +17,7 @@ classifiers = [
   "Topic :: Office/Business :: Financial :: Accounting",
   "Operating System :: OS Independent",
 ]
-dependencies = ["reportlab>=4", "pypdf>=4"]
+dependencies = ["reportlab>=4", "pypdf>=4.3"]
 
 [project.optional-dependencies]
 test = ["pytest>=7"]
