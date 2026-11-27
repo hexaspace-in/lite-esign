@@ -45,7 +45,7 @@ def test_certificate_and_stamp():
 
 
 def test_links():
-    link = new_link("+91 90000 01234")
+    link = new_link("+91 00000 01234")
     assert link["phone_last4"] == "1234" and link_status(link) == "waiting"
     assert not check_code(link, "0000")
     assert check_code(link, "1234")
